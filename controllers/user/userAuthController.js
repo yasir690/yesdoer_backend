@@ -4,6 +4,7 @@ const authModel = require("../../model/authModel");
 const sendEmails = require("../../utils/sendEmail");
 const { hashPassword, comparePassword } = require("../../utils/passwordHashed")
 const { genToken } = require("../../utils/generateToken");
+const emailTemplates = require("../../utils/emailTemplate");
 
 
 
@@ -53,7 +54,7 @@ const userRegister = async (req, res, next) => {
 
     const emailData = {
       subject: "yesdoer - Account Verification",
-      html: apiLink,
+      html: emailTemplates.verificationLink(apiLink),
     };
 
     await sendEmails(email, emailData.subject, emailData.html);
