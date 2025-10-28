@@ -36,7 +36,7 @@ const userShowHabit = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    const finduserhabit = await habitModel.find({ createdBy: id }).populate("categoryId ");
+    const finduserhabit = await habitModel.find({ createdBy: id }).populate("categoryId");
 
     if (finduserhabit.length === 0) {
       throw new NotFoundError("user habit not found")
